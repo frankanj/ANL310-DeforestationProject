@@ -63,4 +63,3 @@ print(monthly_county.info())
 
 print("\nStatewide structure:")
 print(monthly_statewide.info())
-

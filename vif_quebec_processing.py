@@ -61,3 +61,5 @@ print("\nQuébec monthly VIF preview:")
 print(monthly_qc.head(12))
 print("\nQuébec monthly structure:")
 print(monthly_qc.info())
+
+monthly_qc.to_csv("monthly_qc.csv", index=False)

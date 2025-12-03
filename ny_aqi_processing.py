@@ -63,3 +63,5 @@ print(monthly_county.info())
 
 print("\nStatewide structure:")
 print(monthly_statewide.info())
+
+monthly_statewide.to_csv("monthly_statewide.csv", index=False)

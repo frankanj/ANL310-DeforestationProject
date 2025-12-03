@@ -63,3 +63,5 @@ print("\nOntario monthly VIF preview:")
 print(monthly_on.head(12))
 print("\nOntario monthly structure:")
 print(monthly_on.info())
+
+monthly_on.to_csv("monthly_on.csv", index=False)

@@ -60,3 +60,5 @@ print("\nNewfoundland monthly VIF preview:")
 print(monthly_nl.head(12))
 print("\nNewfoundland monthly structure:")
 print(monthly_nl.info())
+
+monthly_nl.to_csv("monthly_nl.csv", index=False)

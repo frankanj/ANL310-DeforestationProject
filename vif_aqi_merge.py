@@ -1,9 +1,12 @@
 import pandas as pd
 
-# Load or reuse the existing dataframes:
-# monthly_on, monthly_qc, monthly_nl, monthly_statewide
+# Load cleaned monthly datasets
+monthly_on = pd.read_csv("monthly_on.csv", parse_dates=["date"])
+monthly_qc = pd.read_csv("monthly_qc.csv", parse_dates=["date"])
+monthly_nl = pd.read_csv("monthly_nl.csv", parse_dates=["date"])
+monthly_statewide = pd.read_csv("monthly_statewide.csv", parse_dates=["date"])
 
-# 1. Merge Ontario + Québec + Newfoundland into one table
+# Merge all provinces into one VIF table
 vif_all = (
     monthly_on[["date","VIF_count"]].rename(columns={"VIF_count":"Ontario_VIF"})
     .merge(
@@ -19,15 +22,15 @@ vif_all = (
     .sort_values("date")
 )
 
-print("\nVIF ALL (Ontario + Québec + NL):")
-print(vif_all.head(20))
-print(vif_all.tail(20))
-print(vif_all.info())
+print("VIF ALL preview:")
+print(vif_all.head())
+print(vif_all.tail())
 
-# 2. Merge with New York statewide AQI
+# Merge with NY AQI statewide
 merged_ny_vif = vif_all.merge(monthly_statewide, on="date", how="inner")
 
-print("\nMerged NY AQI + VIF table:")
-print(merged_ny_vif.head(20))
-print(merged_ny_vif.tail(20))
-print(merged_ny_vif.info())
+print("\nMerged NY AQI + All Provinces:")
+print(merged_ny_vif.head())
+print(merged_ny_vif.tail())
+
+merged_ny_vif.to_csv("merged_ny_vif.csv", index=False)
